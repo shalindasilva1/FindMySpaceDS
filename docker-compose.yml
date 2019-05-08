@@ -1,0 +1,22 @@
+version: '3.4'
+
+services:
+  imageapi:
+    image: ${DOCKER_REGISTRY-}imageapi
+    build:
+      context: .
+      dockerfile: ImageApi/Dockerfile
+
+  propertreadapi:
+    image: ${DOCKER_REGISTRY-}propertreadapi
+    build:
+      context: .
+      dockerfile: PropertReadApi/Dockerfile
+
+
+  propertyupdateapi:
+    image: ${DOCKER_REGISTRY-}propertyupdateapi
+    build:
+      context: .
+      dockerfile: PropertyUpdateApi/Dockerfile
+

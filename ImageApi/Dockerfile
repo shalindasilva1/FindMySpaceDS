@@ -4,14 +4,14 @@ EXPOSE 80
 
 FROM microsoft/dotnet:2.1-sdk AS build
 WORKDIR /src
-COPY ["ImageApi/ImageApi.csproj", "ImageApi/"]
-RUN dotnet restore "ImageApi/ImageApi.csproj"
+COPY ImageApi/ImageApi.csproj ImageApi/
+RUN dotnet restore ImageApi/ImageApi.csproj
 COPY . .
-WORKDIR "/src/ImageApi"
-RUN dotnet build "ImageApi.csproj" -c Release -o /app
+WORKDIR /src/ImageApi
+RUN dotnet build ImageApi.csproj -c Release -o /app
 
 FROM build AS publish
-RUN dotnet publish "ImageApi.csproj" -c Release -o /app
+RUN dotnet publish ImageApi.csproj -c Release -o /app
 
 FROM base AS final
 WORKDIR /app

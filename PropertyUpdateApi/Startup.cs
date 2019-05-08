@@ -29,7 +29,7 @@ namespace PropertyUpdateApi
                     options.UseSqlServer(Configuration.GetConnectionString("PropertyUpdateApiContext")));
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new Info { Title = "PropertyAPI", Version = "v1" });
+                c.SwaggerDoc("v1", new Info { Title = "PropertyUpdateAPI", Version = "v1" });
             });
         }
 
