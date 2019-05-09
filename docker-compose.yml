@@ -6,17 +6,53 @@ services:
     build:
       context: .
       dockerfile: ImageApi/Dockerfile
+    ports:
+    - "5101:80"
+
+  imageapia:
+    image: ${DOCKER_REGISTRY-}imageapi
+    build:
+      context: .
+      dockerfile: ImageApi/Dockerfile
+    ports:
+    - "5111:80"
 
   propertreadapi:
     image: ${DOCKER_REGISTRY-}propertreadapi
     build:
       context: .
       dockerfile: PropertReadApi/Dockerfile
+    ports:
+    - "5102:80"
 
+  propertreadapia:
+    image: ${DOCKER_REGISTRY-}propertreadapi
+    build:
+      context: .
+      dockerfile: PropertReadApi/Dockerfile
+    ports:
+    - "5112:80"
 
   propertyupdateapi:
     image: ${DOCKER_REGISTRY-}propertyupdateapi
     build:
       context: .
       dockerfile: PropertyUpdateApi/Dockerfile
+    ports:
+    - "5103:80"
 
+  propertyupdateapia:
+    image: ${DOCKER_REGISTRY-}propertyupdateapi
+    build:
+      context: .
+      dockerfile: PropertyUpdateApi/Dockerfile
+    ports:
+    - "5113:80"
+
+  gateway:
+    image: ${DOCKER_REGISTRY-}gateway
+    build:
+      context: .
+      dockerfile: Gateway/Dockerfile
+    ports:
+    - "5100:80"
