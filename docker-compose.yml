@@ -8,14 +8,20 @@ services:
       dockerfile: ImageApi/Dockerfile
     ports:
     - "5101:80"
+    networks:
+      main-network:
+        ipv4_address: 172.20.128.11
 
   imageapia:
-    image: ${DOCKER_REGISTRY-}imageapi
+    image: ${DOCKER_REGISTRY-}imageapia
     build:
       context: .
       dockerfile: ImageApi/Dockerfile
     ports:
     - "5111:80"
+    networks:
+      secondary-network:
+        ipv4_address: 172.21.128.11
 
   propertreadapi:
     image: ${DOCKER_REGISTRY-}propertreadapi
@@ -24,14 +30,20 @@ services:
       dockerfile: PropertReadApi/Dockerfile
     ports:
     - "5102:80"
+    networks:
+      main-network:
+        ipv4_address: 172.20.128.12
 
   propertreadapia:
-    image: ${DOCKER_REGISTRY-}propertreadapi
+    image: ${DOCKER_REGISTRY-}propertreadapia
     build:
       context: .
       dockerfile: PropertReadApi/Dockerfile
     ports:
     - "5112:80"
+    networks:
+      secondary-network:
+        ipv4_address: 172.21.128.12
 
   propertyupdateapi:
     image: ${DOCKER_REGISTRY-}propertyupdateapi
@@ -40,14 +52,20 @@ services:
       dockerfile: PropertyUpdateApi/Dockerfile
     ports:
     - "5103:80"
+    networks:
+      main-network:
+        ipv4_address: 172.20.128.13
 
   propertyupdateapia:
-    image: ${DOCKER_REGISTRY-}propertyupdateapi
+    image: ${DOCKER_REGISTRY-}propertyupdateapia
     build:
       context: .
       dockerfile: PropertyUpdateApi/Dockerfile
     ports:
     - "5113:80"
+    networks:
+      secondary-network:
+        ipv4_address: 172.21.128.13
 
   gateway:
     image: ${DOCKER_REGISTRY-}gateway
@@ -56,3 +74,27 @@ services:
       dockerfile: Gateway/Dockerfile
     ports:
     - "5100:80"
+    networks:
+      main-network:
+        ipv4_address: 172.20.128.10
+
+  authanticationapi:
+    image: ${DOCKER_REGISTRY-}authanticationapi
+    build:
+      context: .
+      dockerfile: AuthanticationApi/Dockerfile
+    ports:
+    - "5109:80"
+    networks:
+      main-network:
+        ipv4_address: 172.20.128.19
+
+networks:
+  main-network:
+    ipam:
+      config:
+        - subnet: 172.20.0.0/16
+  secondary-network:
+    ipam:
+      config:
+        - subnet: 172.21.0.0/16

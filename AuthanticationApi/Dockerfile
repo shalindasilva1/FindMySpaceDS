@@ -4,14 +4,14 @@ EXPOSE 80
 
 FROM microsoft/dotnet:2.1-sdk AS build
 WORKDIR /src
-COPY ["AuthanticationApi/AuthanticationApi.csproj", "AuthanticationApi/"]
-RUN dotnet restore "AuthanticationApi/AuthanticationApi.csproj"
+COPY AuthanticationApi/AuthanticationApi.csproj AuthanticationApi/
+RUN dotnet restore AuthanticationApi/AuthanticationApi.csproj
 COPY . .
-WORKDIR "/src/AuthanticationApi"
-RUN dotnet build "AuthanticationApi.csproj" -c Release -o /app
+WORKDIR /src/AuthanticationApi
+RUN dotnet build AuthanticationApi.csproj -c Release -o /app
 
 FROM build AS publish
-RUN dotnet publish "AuthanticationApi.csproj" -c Release -o /app
+RUN dotnet publish AuthanticationApi.csproj -c Release -o /app
 
 FROM base AS final
 WORKDIR /app

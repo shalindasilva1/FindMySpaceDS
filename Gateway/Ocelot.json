@@ -1,52 +1,76 @@
 ﻿{
   "ReRoutes": [
     {
-      "DownstreamPathTemplate": "/api/{catchAll}",
+      "DownstreamPathTemplate": "/{catchAll}",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "172.26.0.1",
+          "Host": "172.20.0.1",
           "Port": 5101
         },
         {
-          "Host": "172.26.0.1",
+          "Host": "172.21.0.1",
           "Port": 5111
         }
       ],
-      "UpstreamPathTemplate": "/api/img/{catchAll}",
-      "UpstreamHttpMethod": [ "POST", "PUT", "GET", "DELETE" ]
+      "UpstreamPathTemplate": "/img/{catchAll}",
+      "UpstreamHttpMethod": [ "POST", "PUT", "GET", "DELETE" ],
+      "LoadBalancerOptions": {
+        "Type": "RoundRobin"
+      }
     },
     {
-      "DownstreamPathTemplate": "/api/{catchAll}",
+      "DownstreamPathTemplate": "/{catchAll}",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "172.26.0.1",
+          "Host": "172.20.0.1",
           "Port": 5102
         },
         {
-          "Host": "172.26.0.1",
+          "Host": "172.21.0.1",
           "Port": 5112
         }
       ],
-      "UpstreamPathTemplate": "/api/pr/{catchAll}",
-      "UpstreamHttpMethod": [ "POST", "PUT", "GET", "DELETE" ]
+      "UpstreamPathTemplate": "/pr/{catchAll}",
+      "UpstreamHttpMethod": [ "POST", "PUT", "GET", "DELETE" ],
+      "LoadBalancerOptions": {
+        "Type": "RoundRobin"
+      }
     },
     {
-      "DownstreamPathTemplate": "/api/{catchAll}",
+      "DownstreamPathTemplate": "/{catchAll}",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "172.26.0.1",
+          "Host": "172.20.0.1",
           "Port": 5103
         },
         {
-          "Host": "172.26.0.1",
+          "Host": "172.21.0.1",
           "Port": 5113
         }
       ],
-      "UpstreamPathTemplate": "/api/pu/{catchAll}",
-      "UpstreamHttpMethod": [ "POST", "PUT", "GET", "DELETE" ]
+      "UpstreamPathTemplate": "/pu/{catchAll}",
+      "UpstreamHttpMethod": [ "POST", "PUT", "GET", "DELETE" ],
+      "LoadBalancerOptions": {
+        "Type": "RoundRobin"
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/{catchAll}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "172.20.0.1",
+          "Port": 5109
+        }
+      ],
+      "UpstreamPathTemplate": "/user/{catchAll}",
+      "UpstreamHttpMethod": [ "POST", "PUT", "GET", "DELETE" ],
+      "LoadBalancerOptions": {
+        "Type": "RoundRobin"
+      }
     }
   ],
   "GlobalConfiguration": {
